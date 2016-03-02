@@ -11,7 +11,6 @@
 @interface ViewController ()
 
 @property (nonatomic, strong) MTTCircularSlider* slider;
-@property (nonatomic, strong) UILabel* valueLabel;
 @property (nonatomic, strong) UILabel* angleLabel;
 @end
 

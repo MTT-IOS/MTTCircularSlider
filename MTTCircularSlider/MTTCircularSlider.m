@@ -58,7 +58,7 @@
     self.contextPadding = 10;
 }
 
-#pragma mark -UI
+#pragma mark -Draw UI
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];

@@ -73,6 +73,4 @@ typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
  */
 @property (nonatomic) CGFloat maxValue;
 
-@property (nonatomic, strong) UIImageView* imageView;
-
 @end
