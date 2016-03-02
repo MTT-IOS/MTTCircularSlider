@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E04280C1C869C1600D0F5BA /* MTTCircularSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E04280B1C869C1600D0F5BA /* MTTCircularSlider.m */; };
 		3E99DF791C80282600CA6C33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E99DF781C80282600CA6C33 /* main.m */; };
 		3E99DF7C1C80282600CA6C33 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E99DF7B1C80282600CA6C33 /* AppDelegate.m */; };
 		3E99DF7F1C80282600CA6C33 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E99DF7E1C80282600CA6C33 /* ViewController.m */; };
@@ -15,7 +16,6 @@
 		3E99DF871C80282600CA6C33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E99DF851C80282600CA6C33 /* LaunchScreen.storyboard */; };
 		3E99DF921C80282600CA6C33 /* MTTCircularSliderDomeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E99DF911C80282600CA6C33 /* MTTCircularSliderDomeTests.m */; };
 		3E99DF9D1C80282600CA6C33 /* MTTCircularSliderDomeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E99DF9C1C80282600CA6C33 /* MTTCircularSliderDomeUITests.m */; };
-		3E99DFB01C802EE900CA6C33 /* MTTCircularSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E99DFAF1C802EE900CA6C33 /* MTTCircularSlider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E04280A1C869C1600D0F5BA /* MTTCircularSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTCircularSlider.h; sourceTree = "<group>"; };
+		3E04280B1C869C1600D0F5BA /* MTTCircularSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTCircularSlider.m; sourceTree = "<group>"; };
 		3E99DF741C80282600CA6C33 /* MTTCircularSliderDome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MTTCircularSliderDome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E99DF781C80282600CA6C33 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3E99DF7A1C80282600CA6C33 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -52,8 +54,6 @@
 		3E99DF981C80282600CA6C33 /* MTTCircularSliderDomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MTTCircularSliderDomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E99DF9C1C80282600CA6C33 /* MTTCircularSliderDomeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTCircularSliderDomeUITests.m; sourceTree = "<group>"; };
 		3E99DF9E1C80282600CA6C33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3E99DFAE1C802EE900CA6C33 /* MTTCircularSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTCircularSlider.h; sourceTree = "<group>"; };
-		3E99DFAF1C802EE900CA6C33 /* MTTCircularSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTCircularSlider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,10 +81,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E0428091C869C1600D0F5BA /* MTTCircularSlider */ = {
+			isa = PBXGroup;
+			children = (
+				3E04280A1C869C1600D0F5BA /* MTTCircularSlider.h */,
+				3E04280B1C869C1600D0F5BA /* MTTCircularSlider.m */,
+			);
+			name = MTTCircularSlider;
+			path = ../MTTCircularSlider;
+			sourceTree = "<group>";
+		};
 		3E99DF6B1C80282600CA6C33 = {
 			isa = PBXGroup;
 			children = (
-				3E99DFAA1C80284F00CA6C33 /* MTTCircularSlider */,
+				3E0428091C869C1600D0F5BA /* MTTCircularSlider */,
 				3E99DF761C80282600CA6C33 /* MTTCircularSliderDome */,
 				3E99DF901C80282600CA6C33 /* MTTCircularSliderDomeTests */,
 				3E99DF9B1C80282600CA6C33 /* MTTCircularSliderDomeUITests */,
@@ -142,15 +152,6 @@
 				3E99DF9E1C80282600CA6C33 /* Info.plist */,
 			);
 			path = MTTCircularSliderDomeUITests;
-			sourceTree = "<group>";
-		};
-		3E99DFAA1C80284F00CA6C33 /* MTTCircularSlider */ = {
-			isa = PBXGroup;
-			children = (
-				3E99DFAE1C802EE900CA6C33 /* MTTCircularSlider.h */,
-				3E99DFAF1C802EE900CA6C33 /* MTTCircularSlider.m */,
-			);
-			path = MTTCircularSlider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,7 +287,7 @@
 				3E99DF7F1C80282600CA6C33 /* ViewController.m in Sources */,
 				3E99DF7C1C80282600CA6C33 /* AppDelegate.m in Sources */,
 				3E99DF791C80282600CA6C33 /* main.m in Sources */,
-				3E99DFB01C802EE900CA6C33 /* MTTCircularSlider.m in Sources */,
+				3E04280C1C869C1600D0F5BA /* MTTCircularSlider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
