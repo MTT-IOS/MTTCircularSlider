@@ -16,8 +16,8 @@ typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
 @interface MTTCircularSlider : UIControl
 
 @property (nonatomic) MTTCircularSliderStyle sliderStyle;
-
 @property (nonatomic) CGFloat lineWidth;
+@property (nonatomic) CGFloat contextPadding;
 @property (nonatomic, strong) UIColor* minimumTrackColor;
 @property (nonatomic, strong) UIColor* maxmumTrackColor;
 @property (nonatomic, strong) UIColor* dotColor;

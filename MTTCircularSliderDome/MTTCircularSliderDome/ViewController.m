@@ -17,16 +17,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    MTTCircularSlider* c = [[MTTCircularSlider alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-    c.center = self.view.center;
-    c.lineWidth = 40;
-    //    c.minAngle = 180;
-    c.backgroundColor = [UIColor clearColor];
-    //    c.value = 180;
-    [c addTarget:self action:@selector(changValue:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:c];
+    MTTCircularSlider* slider = [[MTTCircularSlider alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    slider.center = self.view.center;
+    slider.layer.borderWidth = 1;
+    slider.lineWidth = 40;
+    slider.backgroundColor = [UIColor clearColor];
+    [slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:slider];
 }
-- (void)changValue:(MTTCircularSlider*)send
+- (void)sliderValueChanged:(MTTCircularSlider*)send
 {
 }
 - (void)didReceiveMemoryWarning

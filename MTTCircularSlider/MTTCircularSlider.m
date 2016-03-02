@@ -55,6 +55,7 @@
     self.sliderStyle = MTTCircularSliderStyleDefault;
     self.lineWidth = 10;
     self.circulate = NO;
+    self.contextPadding = 5;
 }
 
 #pragma mark -UI
@@ -64,27 +65,29 @@
 
     if (self.sliderStyle == MTTCircularSliderStyleDefault) {
         CGFloat lineOffset = self.lineWidth / 2;
+        CGSize contextSize = CGSizeMake(rect.size.width - self.contextPadding, rect.size.height - self.contextPadding);
 
         CGContextRef context = UIGraphicsGetCurrentContext();
 
         const CGFloat* components = CGColorGetComponents(self.maxmumTrackColor.CGColor);
         CGContextSetStrokeColor(context, components);
         CGContextSetLineWidth(context, self.lineWidth);
-        CGContextAddArc(context, rect.size.width / 2, rect.size.height / 2, rect.size.width / 2 - lineOffset, 0, 2 * M_PI, 0);
+        CGContextAddArc(context, rect.size.width / 2, rect.size.height / 2, contextSize.width / 2 - lineOffset, 0, 2 * M_PI, 0);
         CGContextDrawPath(context, kCGPathStroke);
 
         components = CGColorGetComponents(self.minimumTrackColor.CGColor);
         CGContextSetStrokeColor(context, components);
         CGContextSetLineWidth(context, self.lineWidth);
-        CGContextAddArc(context, rect.size.width / 2, rect.size.height / 2, rect.size.width / 2 - lineOffset, _minRotation, _rotation, 0);
+        CGContextAddArc(context, rect.size.width / 2, rect.size.height / 2, contextSize.width / 2 - lineOffset, _minRotation, _rotation, 0);
         CGContextDrawPath(context, kCGPathStroke);
 
         CGPoint centerPoint = CGPointMake(rect.size.width / 2 - lineOffset, rect.size.height / 2 - lineOffset);
         CGPoint dotPoint;
-        dotPoint.y = round(centerPoint.y + centerPoint.y * sin(_rotation));
-        dotPoint.x = round(centerPoint.x + centerPoint.x * cos(_rotation));
+        dotPoint.y = round(centerPoint.y + (centerPoint.y - self.contextPadding / 2) * sin(_rotation));
+        dotPoint.x = round(centerPoint.x + (centerPoint.x - self.contextPadding / 2) * cos(_rotation));
         [self.dotColor set];
-        CGContextFillEllipseInRect(context, CGRectMake(((int)dotPoint.x), ((int)dotPoint.y), self.lineWidth, self.lineWidth));
+        CGContextSetShadowWithColor(context, CGSizeMake(0, 0), 4, [[UIColor blackColor] colorWithAlphaComponent:0.5].CGColor);
+        CGContextFillEllipseInRect(context, CGRectMake((dotPoint.x), (dotPoint.y), self.lineWidth, self.lineWidth));
     }
 }
 
