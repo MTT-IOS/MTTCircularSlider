@@ -18,7 +18,9 @@ typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
 @property (nonatomic) MTTCircularSliderStyle sliderStyle;
 
 @property (nonatomic) CGFloat lineWidth;
-@property (nonatomic, strong) UIColor* lineColor;
+@property (nonatomic, strong) UIColor* minimumTrackColor;
+@property (nonatomic, strong) UIColor* maxmumTrackColor;
+@property (nonatomic, strong) UIColor* dotColor;
 
 @property (nonatomic) NSInteger angle;
 @property (nonatomic) NSInteger maxAngle;
@@ -28,7 +30,7 @@ typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
 @property (nonatomic) CGFloat minValue;
 @property (nonatomic) CGFloat maxValue;
 
-@property (nonatomic) BOOL isCirculate;
+@property (nonatomic, getter=isCirculate) BOOL circulate;
 
 @property (nonatomic, strong) UIImageView* imageView;
 
