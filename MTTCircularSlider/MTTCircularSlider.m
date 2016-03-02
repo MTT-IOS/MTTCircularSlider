@@ -47,15 +47,15 @@
     self.backgroundColor = [UIColor clearColor];
     self.opaque = YES;
     _currentTransform = CGAffineTransformMake(1, 0, 0, 1, 0, 0);
-    self.maxmumTrackColor = [UIColor colorWithRed:0.4f green:0.6f blue:0.4f alpha:1];
-    self.minimumTrackColor = [UIColor colorWithRed:0.4f green:0.2f blue:0.4f alpha:1];
+    self.unSelectColor = [UIColor colorWithRed:0.4f green:0.6f blue:0.4f alpha:1];
+    self.selectColor = [UIColor colorWithRed:0.4f green:0.2f blue:0.4f alpha:1];
     self.dotColor = [UIColor whiteColor];
     self.maxAngle = 360;
     self.maxValue = 1;
     self.sliderStyle = MTTCircularSliderStyleDefault;
     self.lineWidth = 10;
     self.circulate = NO;
-    self.contextPadding = 5;
+    self.contextPadding = 10;
 }
 
 #pragma mark -UI
@@ -69,13 +69,13 @@
 
         CGContextRef context = UIGraphicsGetCurrentContext();
 
-        const CGFloat* components = CGColorGetComponents(self.maxmumTrackColor.CGColor);
+        const CGFloat* components = CGColorGetComponents(self.unSelectColor.CGColor);
         CGContextSetStrokeColor(context, components);
         CGContextSetLineWidth(context, self.lineWidth);
         CGContextAddArc(context, rect.size.width / 2, rect.size.height / 2, contextSize.width / 2 - lineOffset, 0, 2 * M_PI, 0);
         CGContextDrawPath(context, kCGPathStroke);
 
-        components = CGColorGetComponents(self.minimumTrackColor.CGColor);
+        components = CGColorGetComponents(self.selectColor.CGColor);
         CGContextSetStrokeColor(context, components);
         CGContextSetLineWidth(context, self.lineWidth);
         CGContextAddArc(context, rect.size.width / 2, rect.size.height / 2, contextSize.width / 2 - lineOffset, _minRotation, _rotation, 0);
@@ -191,14 +191,14 @@
 }
 
 #pragma mark -UI Attribute
-- (void)setMinimumTrackColor:(UIColor*)minimumTrackColor
+- (void)setSelectColor:(UIColor*)selectColor
 {
-    _minimumTrackColor = minimumTrackColor;
+    _selectColor = selectColor;
     [self setNeedsDisplay];
 }
-- (void)setMaxmumTrackColor:(UIColor*)maxmumTrackColor
+- (void)setUnSelectColor:(UIColor*)unSelectColor
 {
-    _maxmumTrackColor = maxmumTrackColor;
+    _unSelectColor = unSelectColor;
     [self setNeedsDisplay];
 }
 - (void)setDotColor:(UIColor*)dotColor
