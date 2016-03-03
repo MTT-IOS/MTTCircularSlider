@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
-    MTTCircularSliderStyleDefault,
-    MTTCircularSliderStyleNone,
+    MTTCircularSliderStyleDefault = 1,
+    MTTCircularSliderStyleNone = 0,
 };
 
 @interface MTTCircularSlider : UIControl
@@ -44,6 +44,12 @@ typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
  *  是否循环滑动,默认:NO
  */
 @property (nonatomic, getter=isCirculate) BOOL circulate;
+
+#pragma mark -UI
+/**
+ *  图片控件
+ */
+@property (nonatomic, strong) UIImageView* imageView;
 
 #pragma mark -Angle
 /**

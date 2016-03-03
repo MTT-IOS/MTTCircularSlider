@@ -87,6 +87,9 @@
         CGContextSetShadowWithColor(context, CGSizeMake(0, 0), 4, [[UIColor blackColor] colorWithAlphaComponent:0.5].CGColor);
         CGContextFillEllipseInRect(context, CGRectMake((dotPoint.x), (dotPoint.y), self.lineWidth, self.lineWidth));
     }
+    else if (self.sliderStyle == MTTCircularSliderStyleImage) {
+        self.imageView.transform = _currentTransform;
+    }
 }
 
 #pragma mark -Event
@@ -166,11 +169,9 @@
         }
     }
     CGFloat r = acosf(transform.a);
-    CGFloat rotation = (transform.b < 0) ? (2 * M_PI - r) : r;
-    CGFloat angle = rotation / M_PI * 180;
     _currentTransform = transform;
-    _rotation = rotation;
-    self.angle = angle;
+    _rotation = (transform.b < 0) ? (2 * M_PI - r) : r;
+    self.angle = _rotation / M_PI * 180;
 }
 
 #pragma mark -Value
