@@ -62,21 +62,19 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-
     if (self.sliderStyle == MTTCircularSliderStyleDefault) {
         CGFloat lineOffset = self.lineWidth / 2;
         CGSize contextSize = CGSizeMake(rect.size.width - self.contextPadding, rect.size.height - self.contextPadding);
-
         CGContextRef context = UIGraphicsGetCurrentContext();
 
         const CGFloat* components = CGColorGetComponents(self.unSelectColor.CGColor);
-        CGContextSetStrokeColor(context, components);
+        CGContextSetStrokeColorWithColor(context, self.unSelectColor.CGColor);
         CGContextSetLineWidth(context, self.lineWidth);
         CGContextAddArc(context, rect.size.width / 2, rect.size.height / 2, contextSize.width / 2 - lineOffset, 0, 2 * M_PI, 0);
         CGContextDrawPath(context, kCGPathStroke);
 
         components = CGColorGetComponents(self.selectColor.CGColor);
-        CGContextSetStrokeColor(context, components);
+        CGContextSetStrokeColorWithColor(context, self.selectColor.CGColor);
         CGContextSetLineWidth(context, self.lineWidth);
         CGContextAddArc(context, rect.size.width / 2, rect.size.height / 2, contextSize.width / 2 - lineOffset, _minRotation, _rotation, 0);
         CGContextDrawPath(context, kCGPathStroke);
@@ -141,12 +139,10 @@
     else {
         _angle = angle;
     }
-
     CGAffineTransform transform = CGAffineTransformMakeRotation((M_PI * _angle) / 180.0);
     _currentTransform = transform;
     CGFloat r = acosf(transform.a);
     _rotation = (transform.b < 0) ? (2 * M_PI - r) : r;
-
     _value = self.minValue + ((self.maxValue - self.minValue) * ((float)_angle / (float)self.maxAngle));
 
     [self setNeedsDisplay];
@@ -172,10 +168,22 @@
     CGFloat r = acosf(transform.a);
     CGFloat rotation = (transform.b < 0) ? (2 * M_PI - r) : r;
     CGFloat angle = rotation / M_PI * 180;
+    _currentTransform = transform;
+    _rotation = rotation;
     self.angle = angle;
 }
 
 #pragma mark -Value
+- (void)setMaxValue:(CGFloat)maxValue
+{
+    _maxValue = maxValue;
+    self.value = self.minValue + ((_maxValue - self.minValue) * ((float)_angle / (float)_maxAngle));
+}
+- (void)setMinValue:(CGFloat)minValue
+{
+    _minValue = minValue;
+    self.value = self.minValue + ((_maxValue - self.minValue) * ((float)_angle / (float)_maxAngle));
+}
 - (void)setValue:(CGFloat)value
 {
     if (value < self.minValue) {
