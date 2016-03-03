@@ -22,7 +22,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRed:41 / 255.0 green:44 / 255.0 blue:48 / 255.0 alpha:1];
     [self.view addSubview:self.angleLabel];
-    [self.view addSubview:self.valueLabel];
+    //    [self.view addSubview:self.valueLabel];
     [self.view addSubview:self.slider];
 }
 - (MTTCircularSlider*)slider
