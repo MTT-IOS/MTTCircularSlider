@@ -87,9 +87,6 @@
         CGContextSetShadowWithColor(context, CGSizeMake(0, 0), 4, [[UIColor blackColor] colorWithAlphaComponent:0.5].CGColor);
         CGContextFillEllipseInRect(context, CGRectMake((dotPoint.x), (dotPoint.y), self.lineWidth, self.lineWidth));
     }
-    else if (self.sliderStyle == MTTCircularSliderStyleImage) {
-        self.imageView.transform = _currentTransform;
-    }
 }
 
 #pragma mark -Event
