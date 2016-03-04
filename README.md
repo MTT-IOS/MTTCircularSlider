@@ -3,7 +3,7 @@
 MTTCircularSlider is a circular slider for IOS 
 
 
-## Installation
+# Installation
 
 Installation on [CocoaPods](http://cocoapods.org).
 
