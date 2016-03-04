@@ -1,5 +1,19 @@
 # MTTCircularSlider
+
 MTTCircularSlider is a circular slider for IOS 
+
+
+## Installation
+
+Installation on [CocoaPods](http://cocoapods.org).
+
+```ruby
+pod 'MTTCircularSlider'
+```
+
+```ruby
+pod 'pop', :git => 'https://github.com/MTT-IOS/MTTCircularSlider.git'
+```
 
 
 #The MIT License (MIT)
