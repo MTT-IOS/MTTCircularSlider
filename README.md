@@ -12,7 +12,7 @@ pod 'MTTCircularSlider'
 ```
 
 ```ruby
-pod 'pop', :git => 'https://github.com/MTT-IOS/MTTCircularSlider.git'
+pod 'MTTCircularSlider', :git => 'https://github.com/MTT-IOS/MTTCircularSlider.git'
 ```
 
 
