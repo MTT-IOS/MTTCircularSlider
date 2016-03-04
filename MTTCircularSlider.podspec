@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license      = "MIT (example)"
   s.author       = { "MTT" => "2529260592@qq.com" }
   s.platform     = :ios, "7.0"
-  s.source       = { :git => "https://github.com/MTT-IOS/MTTCircularSlider", :tag => s.version }
-  s.source_files = "Classes", "MTTCircularSlider/*.{h,m}"
+  s.source       = { :git => "https://github.com/MTT-IOS/MTTCircularSlider.git", :tag => s.version }
+  s.source_files = "MTTCircularSlider/*.{h,m}"
   s.requires_arc = true
 end
