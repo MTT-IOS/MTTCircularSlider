@@ -11,10 +11,6 @@ MTTCircularSlider is available on [CocoaPods](http://cocoapods.org). Just add th
 pod 'MTTCircularSlider'
 ```
 
-```ruby
-pod 'MTTCircularSlider', :git => 'https://github.com/MTT-IOS/MTTCircularSlider.git'
-```
-
 
 #The MIT License (MIT)
 
