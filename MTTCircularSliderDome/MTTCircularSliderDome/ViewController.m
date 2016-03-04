@@ -32,6 +32,8 @@
         _slider.center = self.view.center;
         _slider.lineWidth = 40;
         _slider.angle = 180;
+        //        _slider.maxAngle = 270;
+        //        _slider.minAngle = 90;
         _slider.maxValue = 100;
         [_slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
         [_slider addTarget:self action:@selector(sliderEditingDidEnd:) forControlEvents:UIControlEventEditingDidEnd];

@@ -143,7 +143,7 @@
     _currentTransform = transform;
     CGFloat r = acosf(transform.a);
     _rotation = (transform.b < 0) ? (2 * M_PI - r) : r;
-    _value = self.minValue + ((self.maxValue - self.minValue) * ((float)_angle / (float)self.maxAngle));
+    _value = ((float)_angle - (float)self.minAngle) / ((float)self.maxAngle - (float)self.minAngle) * self.maxValue;
 
     [self setNeedsDisplay];
 }
@@ -195,9 +195,8 @@
     else {
         _value = value;
     }
-    self.angle = ((self.value - self.minValue) / (self.maxValue - self.minValue)) * self.maxAngle;
+    self.angle = _value / self.maxValue * (float)self.maxAngle;
 }
-
 #pragma mark -UI Attribute
 - (void)setSelectColor:(UIColor*)selectColor
 {
