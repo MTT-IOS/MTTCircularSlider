@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version      = "1.0.0"
   s.summary      = "A circular slider for IOS"
   s.homepage     = "https://github.com/MTT-IOS/MTTCircularSlider"
-  s.license      = "MIT (example)"
+  s.license      = "MIT"
   s.author       = { "MTT" => "2529260592@qq.com" }
   s.platform     = :ios, "7.0"
   s.source       = { :git => "https://github.com/MTT-IOS/MTTCircularSlider.git", :tag => s.version }
