@@ -29,11 +29,11 @@ typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
  */
 @property (nonatomic) CGFloat contextPadding;
 /**
- *  选中颜色,默认:red:0.4f green:0.6f blue:0.4f alpha:1
+ *  选中颜色,默认:red:1 green:0.72 blue:0.07 alpha:1
  */
 @property (nonatomic, strong) UIColor* selectColor;
 /**
- *  未选中颜色,默认:red:0.4f green:0.2f blue:0.4f alpha:1
+ *  未选中颜色,默认:red:0.07 green:0.09 blue:0.11 alpha:1
  */
 @property (nonatomic, strong) UIColor* unSelectColor;
 /**

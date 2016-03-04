@@ -22,7 +22,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRed:41 / 255.0 green:44 / 255.0 blue:48 / 255.0 alpha:1];
     [self.view addSubview:self.angleLabel];
-    //    [self.view addSubview:self.valueLabel];
+    [self.view addSubview:self.valueLabel];
     [self.view addSubview:self.slider];
 }
 - (MTTCircularSlider*)slider
@@ -33,9 +33,6 @@
         _slider.lineWidth = 40;
         _slider.angle = 180;
         _slider.maxValue = 100;
-        _slider.selectColor = [UIColor colorWithRed:254 / 255.0 green:185 / 255.0 blue:19 / 255.0 alpha:1];
-        _slider.unSelectColor = [UIColor colorWithRed:20 / 255.0 green:25 / 255.0 blue:30 / 255.0 alpha:1];
-
         [_slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
         [_slider addTarget:self action:@selector(sliderEditingDidEnd:) forControlEvents:UIControlEventEditingDidEnd];
     }

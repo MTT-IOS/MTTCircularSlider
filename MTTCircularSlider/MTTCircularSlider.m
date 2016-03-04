@@ -47,8 +47,8 @@
     self.backgroundColor = [UIColor clearColor];
     self.opaque = YES;
     _currentTransform = CGAffineTransformMake(1, 0, 0, 1, 0, 0);
-    self.unSelectColor = [UIColor colorWithRed:0.4f green:0.6f blue:0.4f alpha:1];
-    self.selectColor = [UIColor colorWithRed:0.4f green:0.2f blue:0.4f alpha:1];
+    self.selectColor = [UIColor colorWithRed:1 green:0.72 blue:0.07 alpha:1];
+    self.unSelectColor = [UIColor colorWithRed:0.07 green:0.09 blue:0.11 alpha:1];
     self.dotColor = [UIColor whiteColor];
     self.maxAngle = 360;
     self.maxValue = 1;
