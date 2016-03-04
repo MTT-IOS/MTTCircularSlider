@@ -1,5 +1,5 @@
 # MTTCircularSlider
-IOS CircularSlider
+MTTCircularSlider is a circular slider for IOS 
 
 
 # MIT License
