@@ -13,6 +13,6 @@ pod 'MTTCircularSlider'
 ```
 
 
-#LICENSE
+#License
 
 MIT
