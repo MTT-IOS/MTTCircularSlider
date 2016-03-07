@@ -87,6 +87,19 @@
         CGContextSetShadowWithColor(context, CGSizeMake(0, 0), 4, [[UIColor blackColor] colorWithAlphaComponent:0.5].CGColor);
         CGContextFillEllipseInRect(context, CGRectMake((dotPoint.x), (dotPoint.y), self.lineWidth, self.lineWidth));
     }
+    else {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+
+        UIImage* image = [UIImage imageNamed:@"test2.png"];
+        CGContextDrawImage(context, CGRectMake(0, 0, self.frame.size.width, self.frame.size.height), image.CGImage);
+
+        UIImage* image2 = [UIImage imageNamed:@"test.png"];
+        CGContextMoveToPoint(context, self.frame.size.width / 2, self.frame.size.height / 2);
+        CGContextAddArc(context, rect.size.width / 2, rect.size.height / 2, rect.size.width / 2, _minRotation, _rotation, 0);
+        CGContextClosePath(context);
+        CGContextClip(context);
+        CGContextDrawImage(context, CGRectMake(0, 0, self.frame.size.width, self.frame.size.height), image2.CGImage);
+    }
 }
 
 #pragma mark -Event

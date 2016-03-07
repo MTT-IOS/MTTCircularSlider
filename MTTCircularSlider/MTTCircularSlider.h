@@ -10,6 +10,7 @@
 
 typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
     MTTCircularSliderStyleDefault = 1,
+    MTTCircularSliderStyleImage = 2,
     MTTCircularSliderStyleNone = 0,
 };
 
@@ -21,13 +22,20 @@ typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
  */
 @property (nonatomic) MTTCircularSliderStyle sliderStyle;
 /**
- *  圆圈宽度,默认:10
- */
-@property (nonatomic) CGFloat lineWidth;
-/**
  *  内边距,默认:10
  */
 @property (nonatomic) CGFloat contextPadding;
+/**
+ *  是否循环滑动,默认:NO
+ */
+@property (nonatomic, getter=isCirculate) BOOL circulate;
+
+#pragma mark -MTTCircularSliderStyleDefault
+/**
+ *  圆圈宽度,默认:10
+ */
+@property (nonatomic) CGFloat lineWidth;
+
 /**
  *  选中颜色,默认:red:0.4f green:0.6f blue:0.4f alpha:1
  */
@@ -40,16 +48,13 @@ typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
  *  滑块颜色,默认:whiteColor
  */
 @property (nonatomic, strong) UIColor* dotColor;
-/**
- *  是否循环滑动,默认:NO
- */
-@property (nonatomic, getter=isCirculate) BOOL circulate;
 
-#pragma mark -UI
-/**
- *  图片控件
- */
-@property (nonatomic, strong) UIImageView* imageView;
+#pragma mark -MTTCircularSliderStyleImage
+@property (nonatomic, strong) UIImage* selectImage;
+
+@property (nonatomic, strong) UIImage* unSelectImage;
+
+@property (nonatomic, strong) UIImage* dotImage;
 
 #pragma mark -Angle
 /**
