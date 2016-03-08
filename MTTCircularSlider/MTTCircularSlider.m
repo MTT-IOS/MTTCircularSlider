@@ -49,7 +49,7 @@
     _currentTransform = CGAffineTransformMake(1, 0, 0, 1, 0, 0);
     self.unSelectColor = [UIColor colorWithRed:0.4f green:0.6f blue:0.4f alpha:1];
     self.selectColor = [UIColor colorWithRed:0.4f green:0.2f blue:0.4f alpha:1];
-    self.dotColor = [UIColor whiteColor];
+    self.indicatorColor = [UIColor whiteColor];
     self.maxAngle = 360;
     self.maxValue = 1;
     self.sliderStyle = MTTCircularSliderStyleDefault;
@@ -83,22 +83,26 @@
         CGPoint dotPoint;
         dotPoint.y = round(centerPoint.y + (centerPoint.y - self.contextPadding / 2) * sin(_rotation));
         dotPoint.x = round(centerPoint.x + (centerPoint.x - self.contextPadding / 2) * cos(_rotation));
-        [self.dotColor set];
+        [self.indicatorColor set];
         CGContextSetShadowWithColor(context, CGSizeMake(0, 0), 4, [[UIColor blackColor] colorWithAlphaComponent:0.5].CGColor);
         CGContextFillEllipseInRect(context, CGRectMake((dotPoint.x), (dotPoint.y), self.lineWidth, self.lineWidth));
     }
-    else {
+    else if (self.sliderStyle == MTTCircularSliderStyleImage) {
         CGContextRef context = UIGraphicsGetCurrentContext();
 
-        UIImage* image = [UIImage imageNamed:@"test2.png"];
-        CGContextDrawImage(context, CGRectMake(0, 0, self.frame.size.width, self.frame.size.height), image.CGImage);
+        CGContextDrawImage(context, CGRectMake(0, 0, self.frame.size.width, self.frame.size.height), self.unSelectImage.CGImage);
 
-        UIImage* image2 = [UIImage imageNamed:@"test.png"];
+        CGContextSaveGState(context);
         CGContextMoveToPoint(context, self.frame.size.width / 2, self.frame.size.height / 2);
         CGContextAddArc(context, rect.size.width / 2, rect.size.height / 2, rect.size.width / 2, _minRotation, _rotation, 0);
         CGContextClosePath(context);
         CGContextClip(context);
-        CGContextDrawImage(context, CGRectMake(0, 0, self.frame.size.width, self.frame.size.height), image2.CGImage);
+        CGContextDrawImage(context, CGRectMake(0, 0, self.frame.size.width, self.frame.size.height), self.selectImage.CGImage);
+        CGContextRestoreGState(context);
+        CGContextTranslateCTM(context, rect.size.width / 2, rect.size.width / 2);
+        CGContextConcatCTM(context, _currentTransform);
+        CGContextTranslateCTM(context, -(rect.size.width / 2), -(rect.size.width / 2));
+        CGContextDrawImage(context, CGRectMake(0, 0, self.frame.size.width, self.frame.size.height), self.indicatorImage.CGImage);
     }
 }
 
@@ -220,21 +224,34 @@
     _unSelectColor = unSelectColor;
     [self setNeedsDisplay];
 }
-- (void)setDotColor:(UIColor*)dotColor
+- (void)setIndicatorColor:(UIColor*)indicatorColor
 {
-    _dotColor = dotColor;
+    _indicatorColor = indicatorColor;
     [self setNeedsDisplay];
 }
 - (void)setSliderStyle:(MTTCircularSliderStyle)sliderStyle
 {
     _sliderStyle = sliderStyle;
-    if (sliderStyle == MTTCircularSliderStyleDefault) {
-        [self setNeedsDisplay];
-    }
+    [self setNeedsDisplay];
 }
 - (void)setLineWidth:(CGFloat)lineWidth
 {
     _lineWidth = lineWidth;
+    [self setNeedsDisplay];
+}
+- (void)setSelectImage:(UIImage*)selectImage
+{
+    _selectImage = selectImage;
+    [self setNeedsDisplay];
+}
+- (void)setUnSelectImage:(UIImage*)unSelectImage
+{
+    _unSelectImage = unSelectImage;
+    [self setNeedsDisplay];
+}
+- (void)setIndicatorImage:(UIImage*)indicatorImage
+{
+    _indicatorImage = indicatorImage;
     [self setNeedsDisplay];
 }
 @end

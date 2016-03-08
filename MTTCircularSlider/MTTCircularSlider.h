@@ -35,7 +35,6 @@ typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
  *  圆圈宽度,默认:10
  */
 @property (nonatomic) CGFloat lineWidth;
-
 /**
  *  选中颜色,默认:red:0.4f green:0.6f blue:0.4f alpha:1
  */
@@ -47,14 +46,14 @@ typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
 /**
  *  滑块颜色,默认:whiteColor
  */
-@property (nonatomic, strong) UIColor* dotColor;
+@property (nonatomic, strong) UIColor* indicatorColor;
 
 #pragma mark -MTTCircularSliderStyleImage
 @property (nonatomic, strong) UIImage* selectImage;
 
 @property (nonatomic, strong) UIImage* unSelectImage;
 
-@property (nonatomic, strong) UIImage* dotImage;
+@property (nonatomic, strong) UIImage* indicatorImage;
 
 #pragma mark -Angle
 /**

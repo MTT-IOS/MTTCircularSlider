@@ -10,9 +10,9 @@
 #import "ViewController.h"
 @interface ViewController ()
 
-@property (nonatomic, strong) UISegmentedControl* domeSegmented;
+@property (nonatomic, strong) UISegmentedControl* segmented;
 
-@property (nonatomic, strong) UIScrollView* domeScroll;
+@property (nonatomic, strong) UIScrollView* scrollView;
 
 @property (nonatomic, strong) UIView* defaultDomeView;
 @property (nonatomic, strong) MTTCircularSlider* defaultSlider;
@@ -20,7 +20,7 @@
 @property (nonatomic, strong) UILabel* valueLabel;
 
 @property (nonatomic, strong) UIView* imageDomeView;
-
+@property (nonatomic, strong) MTTCircularSlider* imageSlider;
 @end
 
 @implementation ViewController
@@ -29,35 +29,37 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRed:41 / 255.0 green:44 / 255.0 blue:48 / 255.0 alpha:1];
-    [self.view addSubview:self.domeScroll];
-    [self.view addSubview:self.domeSegmented];
+    [self.view addSubview:self.scrollView];
+    [self.view addSubview:self.segmented];
 }
-- (UISegmentedControl*)domeSegmented
+- (UISegmentedControl*)segmented
 {
-    if (!_domeSegmented) {
-        _domeSegmented = [[UISegmentedControl alloc] initWithItems:@[ @"Default", @"Image" ]];
-        _domeSegmented.frame = CGRectMake(0, 40, 200, 30);
-        _domeSegmented.center = CGPointMake(self.view.center.x, _domeSegmented.center.y);
-        _domeSegmented.tintColor = [UIColor colorWithRed:254 / 255.0 green:185 / 255.0 blue:19 / 255.0 alpha:1];
-        _domeSegmented.selectedSegmentIndex = 0;
+    if (!_segmented) {
+        _segmented = [[UISegmentedControl alloc] initWithItems:@[ @"Default", @"Image" ]];
+        _segmented.frame = CGRectMake(0, 40, 200, 30);
+        _segmented.center = CGPointMake(self.view.center.x, _segmented.center.y);
+        _segmented.tintColor = [UIColor colorWithRed:254 / 255.0 green:185 / 255.0 blue:19 / 255.0 alpha:1];
+        _segmented.selectedSegmentIndex = 0;
+        [_segmented addTarget:self action:@selector(changeStyle:) forControlEvents:UIControlEventValueChanged];
     }
-    return _domeSegmented;
+    return _segmented;
 }
-- (UIScrollView*)domeScroll
+- (UIScrollView*)scrollView
 {
-    if (!_domeScroll) {
-        _domeScroll = [[UIScrollView alloc] initWithFrame:self.view.frame];
-        _domeScroll.contentSize = CGSizeMake(self.view.frame.size.width * 2, 0);
-        _domeScroll.pagingEnabled = YES;
-        [_domeScroll addSubview:self.defaultDomeView];
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
+        _scrollView.contentSize = CGSizeMake(self.view.frame.size.width * 2, 0);
+        _scrollView.scrollEnabled = NO;
+        [_scrollView addSubview:self.defaultDomeView];
+        [_scrollView addSubview:self.imageDomeView];
     }
-    return _domeScroll;
+    return _scrollView;
 }
 - (UIView*)defaultDomeView
 {
     if (!_defaultDomeView) {
         _defaultDomeView = [UIView new];
-        _defaultDomeView.frame = CGRectMake(0, 0, self.domeScroll.frame.size.width, self.domeScroll.frame.size.height);
+        _defaultDomeView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
 
         [_defaultDomeView addSubview:self.angleLabel];
         [_defaultDomeView addSubview:self.valueLabel];
@@ -106,6 +108,29 @@
     }
     return _valueLabel;
 }
+
+- (UIView*)imageDomeView
+{
+    if (!_imageDomeView) {
+        _imageDomeView = [[UIView alloc] initWithFrame:CGRectMake(self.scrollView.frame.size.width, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)];
+
+        [_imageDomeView addSubview:self.imageSlider];
+    }
+    return _imageDomeView;
+}
+- (MTTCircularSlider*)imageSlider
+{
+    if (!_imageSlider) {
+        _imageSlider = [[MTTCircularSlider alloc] init];
+        _imageSlider.frame = CGRectMake(0, 0, 260, 260);
+        _imageSlider.center = self.defaultDomeView.center;
+        _imageSlider.sliderStyle = MTTCircularSliderStyleImage;
+        _imageSlider.selectImage = [UIImage imageNamed:@"select"];
+        _imageSlider.unSelectImage = [UIImage imageNamed:@"unselect"];
+        _imageSlider.indicatorImage = [UIImage imageNamed:@"indicator"];
+    }
+    return _imageSlider;
+}
 - (void)sliderValueChanged:(MTTCircularSlider*)slider
 {
     self.angleLabel.text = [NSString stringWithFormat:@" %li°", slider.angle];
@@ -114,7 +139,11 @@
 {
     self.valueLabel.text = [NSString stringWithFormat:@"%.2f%%", slider.value];
 }
-
+- (void)changeStyle:(UISegmentedControl*)segmented
+{
+    CGPoint point = CGPointMake(self.scrollView.frame.size.width * segmented.selectedSegmentIndex, 0);
+    [self.scrollView setContentOffset:point animated:YES];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
