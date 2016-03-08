@@ -13,7 +13,6 @@
     CGFloat _rotation;
     CGAffineTransform _currentTransform;
 }
-
 @end
 
 @implementation MTTCircularSlider
@@ -41,7 +40,6 @@
 {
     [self setup];
 }
-
 - (void)setup
 {
     self.backgroundColor = [UIColor clearColor];
@@ -57,7 +55,6 @@
     self.circulate = NO;
     self.contextPadding = 10;
 }
-
 #pragma mark -Draw UI
 - (void)drawRect:(CGRect)rect
 {
@@ -65,21 +62,23 @@
     if (self.sliderStyle == MTTCircularSliderStyleDefault) {
         CGFloat lineOffset = self.lineWidth / 2;
         CGSize contextSize = CGSizeMake(rect.size.width - self.contextPadding, rect.size.height - self.contextPadding);
+        CGFloat center = rect.size.width / 2;
+        CGFloat radius = contextSize.width / 2 - lineOffset;
         CGContextRef context = UIGraphicsGetCurrentContext();
 
         const CGFloat* components = CGColorGetComponents(self.unSelectColor.CGColor);
         CGContextSetStrokeColorWithColor(context, self.unSelectColor.CGColor);
         CGContextSetLineWidth(context, self.lineWidth);
-        CGContextAddArc(context, rect.size.width / 2, rect.size.height / 2, contextSize.width / 2 - lineOffset, 0, 2 * M_PI, 0);
+        CGContextAddArc(context, center, center, radius, 0, 2 * M_PI, 0);
         CGContextDrawPath(context, kCGPathStroke);
 
         components = CGColorGetComponents(self.selectColor.CGColor);
         CGContextSetStrokeColorWithColor(context, self.selectColor.CGColor);
         CGContextSetLineWidth(context, self.lineWidth);
-        CGContextAddArc(context, rect.size.width / 2, rect.size.height / 2, contextSize.width / 2 - lineOffset, _minRotation, _rotation, 0);
+        CGContextAddArc(context, center, center, radius, _minRotation, _rotation, 0);
         CGContextDrawPath(context, kCGPathStroke);
 
-        CGPoint centerPoint = CGPointMake(rect.size.width / 2 - lineOffset, rect.size.height / 2 - lineOffset);
+        CGPoint centerPoint = CGPointMake(center - lineOffset, center - lineOffset);
         CGPoint dotPoint;
         dotPoint.y = round(centerPoint.y + (centerPoint.y - self.contextPadding / 2) * sin(_rotation));
         dotPoint.x = round(centerPoint.x + (centerPoint.x - self.contextPadding / 2) * cos(_rotation));
@@ -88,21 +87,24 @@
         CGContextFillEllipseInRect(context, CGRectMake((dotPoint.x), (dotPoint.y), self.lineWidth, self.lineWidth));
     }
     else if (self.sliderStyle == MTTCircularSliderStyleImage) {
+        CGFloat center = rect.size.width / 2;
+        CGRect imageRect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.width);
         CGContextRef context = UIGraphicsGetCurrentContext();
 
-        CGContextDrawImage(context, CGRectMake(0, 0, self.frame.size.width, self.frame.size.height), self.unSelectImage.CGImage);
+        CGContextDrawImage(context, imageRect, self.unSelectImage.CGImage);
 
         CGContextSaveGState(context);
-        CGContextMoveToPoint(context, self.frame.size.width / 2, self.frame.size.height / 2);
-        CGContextAddArc(context, rect.size.width / 2, rect.size.height / 2, rect.size.width / 2, _minRotation, _rotation, 0);
+        CGContextMoveToPoint(context, center, center);
+        CGContextAddArc(context, center, center, center, _minRotation, _rotation, 0);
         CGContextClosePath(context);
         CGContextClip(context);
-        CGContextDrawImage(context, CGRectMake(0, 0, self.frame.size.width, self.frame.size.height), self.selectImage.CGImage);
+        CGContextDrawImage(context, imageRect, self.selectImage.CGImage);
         CGContextRestoreGState(context);
-        CGContextTranslateCTM(context, rect.size.width / 2, rect.size.width / 2);
+
+        CGContextTranslateCTM(context, center, center);
         CGContextConcatCTM(context, _currentTransform);
-        CGContextTranslateCTM(context, -(rect.size.width / 2), -(rect.size.width / 2));
-        CGContextDrawImage(context, CGRectMake(0, 0, self.frame.size.width, self.frame.size.height), self.indicatorImage.CGImage);
+        CGContextTranslateCTM(context, -(center), -(center));
+        CGContextDrawImage(context, imageRect, self.indicatorImage.CGImage);
     }
 }
 

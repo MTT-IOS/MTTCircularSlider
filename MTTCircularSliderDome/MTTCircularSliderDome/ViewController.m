@@ -40,7 +40,7 @@
         _segmented.center = CGPointMake(self.view.center.x, _segmented.center.y);
         _segmented.tintColor = [UIColor colorWithRed:254 / 255.0 green:185 / 255.0 blue:19 / 255.0 alpha:1];
         _segmented.selectedSegmentIndex = 0;
-        [_segmented addTarget:self action:@selector(changeStyle:) forControlEvents:UIControlEventValueChanged];
+        [_segmented addTarget:self action:@selector(segmentedChangeValue:) forControlEvents:UIControlEventValueChanged];
     }
     return _segmented;
 }
@@ -139,7 +139,7 @@
 {
     self.valueLabel.text = [NSString stringWithFormat:@"%.2f%%", slider.value];
 }
-- (void)changeStyle:(UISegmentedControl*)segmented
+- (void)segmentedChangeValue:(UISegmentedControl*)segmented
 {
     CGPoint point = CGPointMake(self.scrollView.frame.size.width * segmented.selectedSegmentIndex, 0);
     [self.scrollView setContentOffset:point animated:YES];
