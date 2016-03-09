@@ -168,6 +168,8 @@
     if (!_imageSlider) {
         _imageSlider = [[MTTCircularSlider alloc] init];
         _imageSlider.frame = CGRectMake(0, 0, 260, 260);
+        _imageSlider.minAngle = 90;
+        _imageSlider.maxAngle = 180;
         _imageSlider.center = self.defaultDomeView.center;
         _imageSlider.sliderStyle = MTTCircularSliderStyleImage;
         _imageSlider.selectImage = [UIImage imageNamed:@"select"];
