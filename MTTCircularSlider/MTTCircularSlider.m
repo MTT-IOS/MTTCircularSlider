@@ -51,7 +51,7 @@
     self.maxAngle = 360;
     self.maxValue = 1;
     self.sliderStyle = MTTCircularSliderStyleDefault;
-    self.lineWidth = 10;
+    self.lineWidth = 20;
     self.circulate = NO;
     self.contextPadding = 10;
 }
@@ -133,19 +133,17 @@
 - (void)setMaxAngle:(NSInteger)maxAngle
 {
     _maxAngle = (self.minAngle > maxAngle || maxAngle > 360) ? 360 : maxAngle;
-    if (self.angle > _maxAngle) {
-        self.angle = _maxAngle;
-    }
+    self.angle = (self.angle > _maxAngle) ? _maxAngle : self.angle;
+    [self setNeedsDisplay];
 }
 - (void)setMinAngle:(NSInteger)minAngle
 {
     _minAngle = (self.maxAngle < minAngle || minAngle < 0) ? 0 : minAngle;
-    if (self.angle < _minAngle) {
-        self.angle = _minAngle;
-    }
     CGAffineTransform transform = CGAffineTransformMakeRotation((M_PI * _minAngle) / 180.0);
     CGFloat r = acosf(transform.a);
     _minRotation = (transform.b < 0) ? (2 * M_PI - r) : r;
+    self.angle = (self.angle < _minAngle) ? _minAngle : self.angle;
+    [self setNeedsDisplay];
 }
 - (void)setAngle:(NSInteger)angle
 {
@@ -162,7 +160,12 @@
     _currentTransform = transform;
     CGFloat r = acosf(transform.a);
     _rotation = (transform.b < 0) ? (2 * M_PI - r) : r;
-    _value = self.minValue + ((self.maxValue - self.minValue) * ((float)_angle / (float)self.maxAngle));
+    if (self.maxAngle == self.minAngle) {
+        _value = self.maxValue;
+    }
+    else {
+        _value = ((float)_angle - (float)self.minAngle) / ((float)self.maxAngle - (float)self.minAngle) * self.maxValue;
+    }
 
     [self setNeedsDisplay];
 }
@@ -212,7 +215,7 @@
     else {
         _value = value;
     }
-    self.angle = ((self.value - self.minValue) / (self.maxValue - self.minValue)) * self.maxAngle;
+    self.angle = _value / self.maxValue * (float)self.maxAngle;
 }
 
 #pragma mark -UI Attribute

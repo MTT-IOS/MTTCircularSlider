@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
 
 #pragma mark -MTTCircularSliderStyleDefault
 /**
- *  圆圈宽度,默认:10
+ *  圆圈宽度,默认:20
  */
 @property (nonatomic) CGFloat lineWidth;
 /**
