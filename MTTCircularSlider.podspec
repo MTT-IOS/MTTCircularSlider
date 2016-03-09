@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "MTTCircularSlider"
-  s.version      = "1.0.0"
+  s.version      = "1.1.0"
   s.summary      = "A circular slider for IOS"
   s.homepage     = "https://github.com/MTT-IOS/MTTCircularSlider"
   s.license      = "MIT"
