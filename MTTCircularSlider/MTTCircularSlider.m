@@ -45,8 +45,8 @@
     self.backgroundColor = [UIColor clearColor];
     self.opaque = YES;
     _currentTransform = CGAffineTransformMake(1, 0, 0, 1, 0, 0);
-    self.unSelectColor = [UIColor colorWithRed:0.4f green:0.6f blue:0.4f alpha:1];
-    self.selectColor = [UIColor colorWithRed:0.4f green:0.2f blue:0.4f alpha:1];
+    self.unselectColor = [UIColor colorWithRed:0.71 green:0.71 blue:0.71 alpha:1];
+    self.selectColor = [UIColor colorWithRed:0.04 green:0.41 blue:1 alpha:1];
     self.indicatorColor = [UIColor whiteColor];
     self.maxAngle = 360;
     self.maxValue = 1;
@@ -66,8 +66,8 @@
         CGFloat radius = contextSize.width / 2 - lineOffset;
         CGContextRef context = UIGraphicsGetCurrentContext();
 
-        const CGFloat* components = CGColorGetComponents(self.unSelectColor.CGColor);
-        CGContextSetStrokeColorWithColor(context, self.unSelectColor.CGColor);
+        const CGFloat* components = CGColorGetComponents(self.unselectColor.CGColor);
+        CGContextSetStrokeColorWithColor(context, self.unselectColor.CGColor);
         CGContextSetLineWidth(context, self.lineWidth);
         CGContextAddArc(context, center, center, radius, 0, 2 * M_PI, 0);
         CGContextDrawPath(context, kCGPathStroke);
@@ -91,7 +91,7 @@
         CGRect imageRect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.width);
         CGContextRef context = UIGraphicsGetCurrentContext();
 
-        CGContextDrawImage(context, imageRect, self.unSelectImage.CGImage);
+        CGContextDrawImage(context, imageRect, self.unselectImage.CGImage);
 
         CGContextSaveGState(context);
         CGContextMoveToPoint(context, center, center);
@@ -197,12 +197,12 @@
 - (void)setMaxValue:(CGFloat)maxValue
 {
     _maxValue = maxValue;
-    self.value = self.minValue + ((_maxValue - self.minValue) * ((float)_angle / (float)_maxAngle));
+    self.value = self.minValue + ((_maxValue - self.minValue) * ((float)self.angle / (float)self.maxAngle));
 }
 - (void)setMinValue:(CGFloat)minValue
 {
     _minValue = minValue;
-    self.value = self.minValue + ((_maxValue - self.minValue) * ((float)_angle / (float)_maxAngle));
+    self.value = _minValue + ((self.maxValue - _minValue) * ((float)self.angle / (float)self.maxAngle));
 }
 - (void)setValue:(CGFloat)value
 {
@@ -224,9 +224,9 @@
     _selectColor = selectColor;
     [self setNeedsDisplay];
 }
-- (void)setUnSelectColor:(UIColor*)unSelectColor
+- (void)setUnselectColor:(UIColor*)unselectColor
 {
-    _unSelectColor = unSelectColor;
+    _unselectColor = unselectColor;
     [self setNeedsDisplay];
 }
 - (void)setIndicatorColor:(UIColor*)indicatorColor
@@ -249,9 +249,9 @@
     _selectImage = selectImage;
     [self setNeedsDisplay];
 }
-- (void)setUnSelectImage:(UIImage*)unSelectImage
+- (void)setUnselectImage:(UIImage*)unselectImage
 {
-    _unSelectImage = unSelectImage;
+    _unselectImage = unselectImage;
     [self setNeedsDisplay];
 }
 - (void)setIndicatorImage:(UIImage*)indicatorImage

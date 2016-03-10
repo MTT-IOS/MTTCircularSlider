@@ -8,6 +8,11 @@
 
 #import "MTTCircularSlider.h"
 #import "ViewController.h"
+
+#define Color292c30 [UIColor colorWithRed:41 / 255.0 green:44 / 255.0 blue:48 / 255.0 alpha:1]
+#define Color14191e [UIColor colorWithRed:20 / 255.0 green:25 / 255.0 blue:30 / 255.0 alpha:1]
+#define Colorfeb913 [UIColor colorWithRed:254 / 255.0 green:185 / 255.0 blue:19 / 255.0 alpha:1]
+
 @interface ViewController ()
 
 @property (nonatomic, strong) UISegmentedControl* segmented;
@@ -30,7 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithRed:41 / 255.0 green:44 / 255.0 blue:48 / 255.0 alpha:1];
+    self.view.backgroundColor = Color292c30;
     [self.view addSubview:self.scrollView];
     [self.view addSubview:self.segmented];
 }
@@ -40,7 +45,7 @@
         _segmented = [[UISegmentedControl alloc] initWithItems:@[ @"Default", @"Image" ]];
         _segmented.frame = CGRectMake(0, 40, 200, 30);
         _segmented.center = CGPointMake(self.view.center.x, _segmented.center.y);
-        _segmented.tintColor = [UIColor colorWithRed:254 / 255.0 green:185 / 255.0 blue:19 / 255.0 alpha:1];
+        _segmented.tintColor = Colorfeb913;
         _segmented.selectedSegmentIndex = 0;
         [_segmented addTarget:self action:@selector(segmentedChangeValue:) forControlEvents:UIControlEventValueChanged];
     }
@@ -75,11 +80,12 @@
 {
     if (!_defaultSlider) {
         _defaultSlider = [[MTTCircularSlider alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 250) / 2, CGRectGetMaxY(self.valueLabel.frame) + 10, 250, 250)];
+
         _defaultSlider.lineWidth = 40;
         _defaultSlider.angle = 180;
         _defaultSlider.maxValue = 100;
-        _defaultSlider.selectColor = [UIColor colorWithRed:254 / 255.0 green:185 / 255.0 blue:19 / 255.0 alpha:1];
-        _defaultSlider.unSelectColor = [UIColor colorWithRed:20 / 255.0 green:25 / 255.0 blue:30 / 255.0 alpha:1];
+        _defaultSlider.selectColor = Colorfeb913;
+        _defaultSlider.unselectColor = Color14191e;
         _defaultSlider.tag = 1;
         [_defaultSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
         [_defaultSlider addTarget:self action:@selector(sliderEditingDidEnd:) forControlEvents:UIControlEventEditingDidEnd];
@@ -92,8 +98,8 @@
         _minAngleSlider = [[MTTCircularSlider alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.defaultSlider.frame) + 20, 130, 130)];
         _minAngleSlider.lineWidth = 20;
         _minAngleSlider.angle = self.defaultSlider.minAngle;
-        _minAngleSlider.selectColor = [UIColor colorWithRed:254 / 255.0 green:185 / 255.0 blue:19 / 255.0 alpha:1];
-        _minAngleSlider.unSelectColor = [UIColor colorWithRed:20 / 255.0 green:25 / 255.0 blue:30 / 255.0 alpha:1];
+        _minAngleSlider.selectColor = Colorfeb913;
+        _minAngleSlider.unselectColor = Color14191e;
         _minAngleSlider.tag = 2;
         [_minAngleSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
 
@@ -102,7 +108,7 @@
         label.center = _minAngleSlider.center;
         label.text = @"MinAngle";
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor colorWithRed:254 / 255.0 green:185 / 255.0 blue:19 / 255.0 alpha:1];
+        label.textColor = Colorfeb913;
         [self.defaultDomeView addSubview:label];
     }
     return _minAngleSlider;
@@ -113,8 +119,8 @@
         _maxAngleSlider = [[MTTCircularSlider alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.minAngleSlider.frame) + 20, CGRectGetMinY(self.minAngleSlider.frame), 130, 130)];
         _maxAngleSlider.lineWidth = 20;
         _maxAngleSlider.angle = self.defaultSlider.maxAngle;
-        _maxAngleSlider.selectColor = [UIColor colorWithRed:254 / 255.0 green:185 / 255.0 blue:19 / 255.0 alpha:1];
-        _maxAngleSlider.unSelectColor = [UIColor colorWithRed:20 / 255.0 green:25 / 255.0 blue:30 / 255.0 alpha:1];
+        _maxAngleSlider.selectColor = Colorfeb913;
+        _maxAngleSlider.unselectColor = Color14191e;
         _maxAngleSlider.tag = 3;
         [_maxAngleSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
 
@@ -123,7 +129,7 @@
         label.center = _maxAngleSlider.center;
         label.text = @"MaxAngle";
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor colorWithRed:254 / 255.0 green:185 / 255.0 blue:19 / 255.0 alpha:1];
+        label.textColor = Colorfeb913;
         [self.defaultDomeView addSubview:label];
     }
     return _maxAngleSlider;
@@ -136,7 +142,7 @@
         _angleLabel.center = self.defaultSlider.center;
         _angleLabel.textAlignment = NSTextAlignmentCenter;
         _angleLabel.font = [UIFont boldSystemFontOfSize:40];
-        _angleLabel.textColor = [UIColor colorWithRed:254 / 255.0 green:185 / 255.0 blue:19 / 255.0 alpha:1];
+        _angleLabel.textColor = Colorfeb913;
         _angleLabel.text = [NSString stringWithFormat:@" %li°", self.defaultSlider.angle];
     }
     return _angleLabel;
@@ -148,7 +154,7 @@
         _valueLabel.frame = CGRectMake(0, 80, self.view.frame.size.width, 40);
         _valueLabel.textAlignment = NSTextAlignmentCenter;
         _valueLabel.font = [UIFont boldSystemFontOfSize:40];
-        _valueLabel.textColor = [UIColor colorWithRed:254 / 255.0 green:185 / 255.0 blue:19 / 255.0 alpha:1];
+        _valueLabel.textColor = Colorfeb913;
         _valueLabel.text = [NSString stringWithFormat:@"%.2f%%", self.defaultSlider.value];
     }
     return _valueLabel;
@@ -169,9 +175,10 @@
         _imageSlider = [[MTTCircularSlider alloc] init];
         _imageSlider.frame = CGRectMake(0, 0, 260, 260);
         _imageSlider.center = self.defaultDomeView.center;
+
         _imageSlider.sliderStyle = MTTCircularSliderStyleImage;
         _imageSlider.selectImage = [UIImage imageNamed:@"select"];
-        _imageSlider.unSelectImage = [UIImage imageNamed:@"unselect"];
+        _imageSlider.unselectImage = [UIImage imageNamed:@"unselect"];
         _imageSlider.indicatorImage = [UIImage imageNamed:@"indicator"];
         _imageSlider.circulate = YES;
     }
@@ -187,8 +194,6 @@
     case 3:
         self.defaultSlider.maxAngle = slider.angle;
         self.minAngleSlider.maxAngle = slider.angle;
-        break;
-    default:
         break;
     }
     self.angleLabel.text = [NSString stringWithFormat:@" %li°", self.defaultSlider.angle];
