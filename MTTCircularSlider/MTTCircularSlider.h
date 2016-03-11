@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
-    MTTCircularSliderStyleDefault = 1,
-    MTTCircularSliderStyleImage = 2,
-    MTTCircularSliderStyleNone = 0,
+    MTTCircularSliderStyleDefault = 1, //默认样式
+    MTTCircularSliderStyleImage = 2, //图片样式
+    MTTCircularSliderStyleNone = 0, //无样式
 };
 
 @interface MTTCircularSlider : UIControl
@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
  */
 @property (nonatomic) CGFloat contextPadding;
 /**
- *  是否循环滑动,默认:NO
+ *  设置是否循环滑动,默认:NO
  */
 @property (nonatomic, getter=isCirculate) BOOL circulate;
 
@@ -36,13 +36,13 @@ typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
  */
 @property (nonatomic) CGFloat lineWidth;
 /**
- *  已选中进度颜色,默认:red:0.4f green:0.6f blue:0.4f alpha:1
+ *  已选中进度颜色,默认:red:0.04 green:0.41 blue:1
  */
 @property (nonatomic, strong) UIColor* selectColor;
 /**
- *  未选中进度颜色,默认:red:0.4f green:0.2f blue:0.4f alpha:1
+ *  未选中进度颜色,默认:red:0.71 green:0.71 blue:0.71
  */
-@property (nonatomic, strong) UIColor* unSelectColor;
+@property (nonatomic, strong) UIColor* unselectColor;
 /**
  *  指示器颜色,默认:whiteColor
  */
@@ -56,7 +56,7 @@ typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
 /**
  *  已选中进度图片
  */
-@property (nonatomic, strong) UIImage* unSelectImage;
+@property (nonatomic, strong) UIImage* unselectImage;
 /**
  *  指示器图片
  */
