@@ -43,17 +43,16 @@
 - (void)setup
 {
     self.backgroundColor = [UIColor clearColor];
-    self.opaque = YES;
     _currentTransform = CGAffineTransformMake(1, 0, 0, 1, 0, 0);
-    self.unselectColor = [UIColor colorWithRed:0.71 green:0.71 blue:0.71 alpha:1];
-    self.selectColor = [UIColor colorWithRed:0.04 green:0.41 blue:1 alpha:1];
-    self.indicatorColor = [UIColor whiteColor];
-    self.maxAngle = 360;
-    self.maxValue = 1;
-    self.sliderStyle = MTTCircularSliderStyleDefault;
-    self.lineWidth = 20;
-    self.circulate = NO;
-    self.contextPadding = 10;
+    _unselectColor = [UIColor colorWithRed:0.71 green:0.71 blue:0.71 alpha:1];
+    _selectColor = [UIColor colorWithRed:0.04 green:0.41 blue:1 alpha:1];
+    _indicatorColor = [UIColor whiteColor];
+    _maxAngle = 360;
+    _maxValue = 1;
+    _sliderStyle = MTTCircularSliderStyleDefault;
+    _lineWidth = 20;
+    _circulate = NO;
+    _contextPadding = 10;
 }
 #pragma mark -Draw UI
 - (void)drawRect:(CGRect)rect
@@ -147,19 +146,18 @@
 }
 - (void)setAngle:(NSInteger)angle
 {
-    if (angle > self.maxAngle) {
+    if (angle > self.maxAngle)
         _angle = self.maxAngle;
-    }
-    else if (angle < self.minAngle) {
+    else if (angle < self.minAngle)
         _angle = self.minAngle;
-    }
-    else {
+    else
         _angle = angle;
-    }
+
     CGAffineTransform transform = CGAffineTransformMakeRotation((M_PI * _angle) / 180.0);
     _currentTransform = transform;
     CGFloat r = acosf(transform.a);
     _rotation = (transform.b < 0) ? (2 * M_PI - r) : r;
+
     if (self.maxAngle == self.minAngle) {
         _value = self.maxValue;
     }
