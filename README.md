@@ -31,12 +31,15 @@ slider.indicatorImage = [UIImage imageNamed:@"indicator"];
 图片素材参考,三张图片的大小建议一样
 
 `unselectImage`
+
 ![unselectImage](http://7xrv0w.com1.z0.glb.clouddn.com/unselect%402x.png?imageView/2/w/200/)
 
 `selectImage`
+
 ![selectImage](http://7xrv0w.com1.z0.glb.clouddn.com/select%402x.png?imageView/2/w/200/)
 
 `indicatorImage`
+
 ![indicatorImage](http://7xrv0w.com1.z0.glb.clouddn.com/indicator%402x.png?imageView/2/w/200/)
 
 # License
