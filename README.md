@@ -101,7 +101,7 @@ MTTCircularSlider目前有以下3个样式
 @property (nonatomic) CGFloat contextPadding;
 ```
 #### MTTCircularSliderStyleImage
-以下参数仅在`MTTCircularSliderStyleDefault`样式下生效
+以下参数仅在`MTTCircularSliderStyleImage`样式下生效
 
 ``` objectivec
 /**

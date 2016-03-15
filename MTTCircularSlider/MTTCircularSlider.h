@@ -22,10 +22,6 @@ typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
  */
 @property (nonatomic) MTTCircularSliderStyle sliderStyle;
 /**
- *  内边距,默认:10
- */
-@property (nonatomic) CGFloat contextPadding;
-/**
  *  设置是否循环滑动,默认:NO
  */
 @property (nonatomic, getter=isCirculate) BOOL circulate;
@@ -47,6 +43,10 @@ typedef NS_ENUM(NSUInteger, MTTCircularSliderStyle) {
  *  指示器颜色,默认:whiteColor
  */
 @property (nonatomic, strong) UIColor* indicatorColor;
+/**
+ *  内边距,默认:10
+ */
+@property (nonatomic) CGFloat contextPadding;
 
 #pragma mark -MTTCircularSliderStyleImage
 /**
