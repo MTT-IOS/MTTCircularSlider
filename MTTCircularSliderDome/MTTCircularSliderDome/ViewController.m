@@ -80,7 +80,6 @@
 {
     if (!_defaultSlider) {
         _defaultSlider = [[MTTCircularSlider alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 250) / 2, CGRectGetMaxY(self.valueLabel.frame) + 10, 250, 250)];
-
         _defaultSlider.lineWidth = 40;
         _defaultSlider.angle = 180;
         _defaultSlider.maxValue = 100;
