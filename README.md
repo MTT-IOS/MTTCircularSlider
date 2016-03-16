@@ -1,52 +1,45 @@
 # MTTCircularSlider
 
-MTTCircularSlider 是一个IOS平台上的圆形滑杆控件
+MTTCircularSlider is a circular slider for IOS
 
 ![(Dome)](http://ww1.sinaimg.cn/large/abb730d0gw1f1wg2u3h3dg208w0fs4qp.gif)
 
-# 安装
+# Installation
 
-MTTCircularSlider 支持 [CocoaPods](http://cocoapods.org).你可以在你项目中的Podfile文件内添加以下代码添加MTTCircularSlider:
-
+MTTCircularSlider is available on [CocoaPods](http://cocoapods.org). Just add the following to your project Podfile:
 ```ruby
 pod 'MTTCircularSlider'
 ```
 
-# 使用
+# Usage
 
-在`/MTTCircularSliderDome`内写有比较详细的Dome,可直接查看代码
+See dome Xcode project in `/MTTCircularSliderDome`
 
-#### 默认样式
+#### Default Style
 ``` objectivec
 MTTCircularSlider* slider = [[MTTCircularSlider alloc] initWithFrame:CGRectMake(100, 100, 150, 150)];
 [self.view addSubview:slider];
 ```
-你还可以通过设置以下参数修改UI
-``` objectivec
-@property (nonatomic) CGFloat lineWidth;//圆环宽度
-@property (nonatomic, strong) UIColor* selectColor;//选中部分颜色
-@property (nonatomic, strong) UIColor* unselectColor;//未选中部分颜色
-@property (nonatomic, strong) UIColor* indicatorColor;//指示器颜色
-@property (nonatomic) CGFloat contextPadding;//内边距
-```
 
-#### 自定义图片样式
+#### Image Style
 ![Dome](http://7xrv0w.com1.z0.glb.clouddn.com/image_style_dome.gif)
 ``` objectivec
+MTTCircularSlider* slider = [[MTTCircularSlider alloc] initWithFrame:CGRectMake(100, 100, 150, 150)];
 slider.sliderStyle = MTTCircularSliderStyleImage;
 slider.unselectImage = [UIImage imageNamed:@"unselect.png"];
 slider.selectImage = [UIImage imageNamed:@"select.png"];
 slider.indicatorImage = [UIImage imageNamed:@"indicator.png"];
+[self.view addSubview:slider];
 ```
 
-图片素材参考,图片的大小建议一样
+Image material([PSD Source](http://www.psdgraphics.com/psd/metal-volume-knob-psd/))
 
 ![unselectImage](http://7xrv0w.com1.z0.glb.clouddn.com/unselect.png?imageView/2/w/200/)
 ![selectImage](http://7xrv0w.com1.z0.glb.clouddn.com/select.png?imageView/2/w/200/)
 ![indicatorImage](http://7xrv0w.com1.z0.glb.clouddn.com/indicator.png?imageView/2/w/200/)
 
 
-#### 事件
+#### Event
 你可以添加`UIControlEventValueChanged`事件,在用户改变角度时触发事件
 ``` objectivec
 [slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
