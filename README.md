@@ -1,5 +1,7 @@
 # MTTCircularSlider
 
+[中文介绍](http://mttios.com/2016/03/15/MTTCircularSlider_Usage)
+
 MTTCircularSlider is a circular slider for IOS
 
 ![(Dome)](http://ww1.sinaimg.cn/large/abb730d0gw1f1wg2u3h3dg208w0fs4qp.gif)
