@@ -40,66 +40,56 @@ Image material([PSD Source](http://www.psdgraphics.com/psd/metal-volume-knob-psd
 
 
 #### Event
-你可以添加`UIControlEventValueChanged`事件,在用户改变角度时触发事件
 ``` objectivec
 [slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-```
-你也可以添加`UIControlEventEditingDidEnd`事件,在用户操作结束时触发事件
-``` objectivec
 [slider addTarget:self action:@selector(sliderEditingDidEnd:) forControlEvents:UIControlEventEditingDidEnd;
 ```
-# 参数
+# Options
 
 #### sliderStyle:(MTTCircularSliderStyle)
-默认值:MTTCircularSliderStyleDefault,用于设置控件样式.
 
-MTTCircularSlider目前有以下3个样式
-
-* MTTCircularSliderStyleDefault = 1, //默认样式
-* MTTCircularSliderStyleImage = 2, //自定义图片样式
-* MTTCircularSliderStyleNone = 0, //无样式
+* MTTCircularSliderStyleDefault = 1, //Default Style
+* MTTCircularSliderStyleImage = 2, //Customize Image Style
+* MTTCircularSliderStyleNone = 0, //None Style
 
 ``` objectivec
-@property (nonatomic) MTTCircularSliderStyle sliderStyle;
+@property (nonatomic) MTTCircularSliderStyle sliderStyle;//Default:MTTCircularSliderStyleDefault
 ```
 #### circulate:(BOOL)
-默认值:NO,设置圆环是否连通循环滑动
 ``` objectivec
-@property (nonatomic, getter=isCirculate) BOOL circulate;
+@property (nonatomic, getter=isCirculate) BOOL circulate;//Default:NO
 ```
 
 #### MTTCircularSliderStyleDefault
-以下参数仅在`MTTCircularSliderStyleDefault`样式下生效
+The parameters are effective when `MTTCircularSliderStyleDefault`
 
 ``` objectivec
-@property (nonatomic) CGFloat lineWidth; //圆环宽度,默认:20
-@property (nonatomic, strong) UIColor* selectColor; //已选中进度颜色,默认:#0a68ff
-@property (nonatomic, strong) UIColor* unselectColor; //未选中进度颜色,默认:#b5b5b5
-@property (nonatomic, strong) UIColor* indicatorColor; //指示器颜色,默认:#FFFFFF
-@property (nonatomic) CGFloat contextPadding; //内边距,默认:10
+@property (nonatomic) CGFloat lineWidth; //Default:20
+@property (nonatomic, strong) UIColor* selectColor; //Default:#0a68ff
+@property (nonatomic, strong) UIColor* unselectColor; //Default:#b5b5b5
+@property (nonatomic, strong) UIColor* indicatorColor; //Default:#FFFFFF
+@property (nonatomic) CGFloat contextPadding; //Default:10
 ```
 #### MTTCircularSliderStyleImage
-以下参数仅在`MTTCircularSliderStyleImage`样式下生效
+The parameters are effective when `MTTCircularSliderStyleImage`
 
 ``` objectivec
-@property (nonatomic, strong) UIImage* selectImage; //已选中进度图片
-@property (nonatomic, strong) UIImage* unselectImage; //已选中进度图片
-@property (nonatomic, strong) UIImage* indicatorImage; //指示器图片
+@property (nonatomic, strong) UIImage* selectImage;
+@property (nonatomic, strong) UIImage* unselectImage;
+@property (nonatomic, strong) UIImage* indicatorImage;
 ```
 #### Angle
-可以设置以下参数对角度进行操作
 ``` objectivec
-@property (nonatomic) NSInteger angle; //当前角度,默认:0
-@property (nonatomic) NSInteger maxAngle; //最大角度,默认:360
-@property (nonatomic) NSInteger minAngle; //最小角度,默认:0
+@property (nonatomic) NSInteger angle; //Default:0
+@property (nonatomic) NSInteger maxAngle; //Default:360
+@property (nonatomic) NSInteger minAngle; //Default:0
 ```
 
 #### Value
-可以设置以下参数对Value进行操作
 ``` objectivec
-@property (nonatomic) CGFloat value; //当前数值,默认:0
-@property (nonatomic) CGFloat minValue; //最小数值,默认:0
-@property (nonatomic) CGFloat maxValue; //最大数值,默认:1
+@property (nonatomic) CGFloat value; //Default:0
+@property (nonatomic) CGFloat minValue; //Default:0
+@property (nonatomic) CGFloat maxValue; //Default:1
 ```
 
 # License
