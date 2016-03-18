@@ -257,4 +257,9 @@
     _indicatorImage = indicatorImage;
     [self setNeedsDisplay];
 }
+- (void)setContextPadding:(CGFloat)contextPadding
+{
+    _contextPadding = contextPadding;
+    [self setNeedsDisplay];
+}
 @end
