@@ -162,7 +162,7 @@
         _value = self.maxValue;
     }
     else {
-        _value = ((float)_angle - (float)self.minAngle) / ((float)self.maxAngle - (float)self.minAngle) * self.maxValue;
+        _value = self.minValue + ((float)_angle - (float)self.minAngle) / ((float)self.maxAngle - (float)self.minAngle) * self.maxValue;
     }
 
     [self setNeedsDisplay];
