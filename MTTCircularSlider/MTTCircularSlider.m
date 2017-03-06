@@ -38,6 +38,7 @@
 }
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     [self setup];
 }
 - (void)setup
@@ -200,7 +201,7 @@
 - (void)setMinValue:(CGFloat)minValue
 {
     _minValue = minValue;
-    self.value = _minValue + ((self.maxValue - _minValue) * ((float)self.angle / (float)self.maxAngle));
+    self.value = self.minValue + _minValue + ((self.maxValue - _minValue) * ((float)self.angle / (float)self.maxAngle));
 }
 - (void)setValue:(CGFloat)value
 {
